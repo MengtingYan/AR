@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Exit : MonoBehaviour
 {
@@ -12,7 +13,13 @@ public class Exit : MonoBehaviour
     }
     public void OnCloseGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
+
+
 
 }
